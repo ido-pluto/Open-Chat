@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All opend chat</title>
+    <script src="/vue.min.js"></script>
+    <script src="/mainChats.js"></script>
+    <script src="/cookie.js"></script>
+</head>
+
+<body>
+    <div id="allChat">
+        <div class="createnow" @click="create">Create New chat</div>
+        <div class="chat SecretChatC" v-for="i in SecretChat">
+            <div class="name"><a :href="'/chat.html#' + i.id" target="_block">(Secret Chat) - {{i.name}}</a></div>
+            <div class="connected">{{i.numUsers}} connected</div>
+            <div class="time">{{date(i.created)}}</div>
+            <div class="delete" @click="deleteChat(i.id, i.name, 's')">Delete</div>
+        </div>
+        <div class="chat" v-for="i in chats">
+            <div class="name"><a :href="'/chat.html#' + i.id" target="_block">{{i.name}}</a></div>
+            <div class="connected">{{i.numUsers}} connected</div>
+            <div class="time">{{date(i.created)}}</div>
+            <div class="delete" @click="deleteChat(i.id, i.name)">Delete</div>
+        </div>
+    </div>
+</body>
+<style>
+
+    .SecretChatC {
+        background-color: #fff8f0;
+
+    }
+
+    .chat {
+        border: solid 1px #3fa0cb;
+        border-radius: 3px;
+        padding: 5px;
+        margin: 10px;
+        font-size: 18px;
+        font-family: monospace;
+        box-shadow: 6px 5px 0px 1px #cccccc;
+    }
+
+    .createnow {
+        text-align: center;
+        padding: 5px;
+        margin: 5px;
+        font-size: 22px;
+        background-color: #e2edf6;
+        border-radius: 3px;
+        cursor: pointer;
+        font-family: sans-serif;
+        box-shadow: -7px 6px 0px 1px #cccccc;
+        margin-bottom: 20px;
+    }
+
+    .name {
+        text-decoration: underline;
+        text-align: center;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .delete {
+        text-align: right;
+        color: #f87b28;
+        cursor: pointer;
+    }
+</style>
+
+</html>
